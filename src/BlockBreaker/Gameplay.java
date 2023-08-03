@@ -11,17 +11,19 @@ import javax.swing.Timer;
 public class Gameplay extends JPanel implements KeyListener, ActionListener {
     private boolean play= false;
     private int score= 0;
-    private int totalBricks= 21;
+    private int totalBricks= 100;
 
     private Timer timer;
 
     private int delay= 8;
 
-    private int playerX= 310;
+    private int playerX= 150;
+    
+    private int level =1 ;
 
-    private int ballPosX= 120;
+    private int ballPosX= 50;
 
-    private int ballPosY=350;
+    private int ballPosY=400;
 
     private int ballXdir= -1;
 
@@ -29,7 +31,7 @@ public class Gameplay extends JPanel implements KeyListener, ActionListener {
 
     private mapGenerator map;
     public Gameplay(){
-        map= new mapGenerator(3, 7);
+        map= new mapGenerator(5,20);
         addKeyListener(this);
         setFocusable(true);
         setFocusTraversalKeysEnabled(false);
@@ -42,7 +44,9 @@ public class Gameplay extends JPanel implements KeyListener, ActionListener {
         g.fillRect(1, 1, 692, 592);
 
         map.draw((Graphics2D) g);
-        g.setColor(Color.yellow);
+        
+        
+        g.setColor(Color.white);
         g.fillRect(0, 0, 3, 592);
         g.fillRect(0, 0, 692, 3);
         g.fillRect(691, 0, 3, 592);
@@ -50,20 +54,29 @@ public class Gameplay extends JPanel implements KeyListener, ActionListener {
         g.setColor(Color.white);
         g.setFont(new Font("serif", Font.BOLD, 25));
         g.drawString("Score: "+score, 540, 30);
+        
+        
+        g.setColor(Color.white);
+        g.setFont(new Font("serif", Font.BOLD, 25));
+        g.drawString("totalBricks: "+totalBricks, 100, 30);
+        
+        g.setColor(Color.white);
+        g.setFont(new Font("serif", Font.BOLD, 25));
+        g.drawString("Level: " +level  , 300, 30);
 
-        g.setColor(Color.green);
-        g.fillRect(playerX, 550, 100, 8);
+        g.setColor(Color.white);
+        g.fillRect(playerX, 550, 150, 50);
 
-        g.setColor(Color.yellow);
+        g.setColor(Color.white);
         g.fillOval(ballPosX, ballPosY, 20, 20);
 
         if(totalBricks<=0){
             play= false;
             ballXdir=0;
             ballYdir=0;
-            g.setColor(Color.RED);
+            g.setColor(Color.green);
             g.setFont(new Font("serif", Font.BOLD, 30));
-            g.drawString(" Game Finished, Score: "+score, 260, 300);
+            g.drawString(" Congratulation , Score: "+score, 260, 300);
 
             g.setFont(new Font("serif", Font.BOLD, 20));
             g.drawString("Press Enter to Restart", 230, 350);
@@ -88,7 +101,7 @@ public class Gameplay extends JPanel implements KeyListener, ActionListener {
         timer.start();
 
         if(play){
-            if(new Rectangle(ballPosX, ballPosY, 20, 20).intersects(new Rectangle(playerX, 550, 100, 8))){
+            if(new Rectangle(ballPosX, ballPosY, 20, 20).intersects(new Rectangle(playerX, 550, 150, 8))){
                 ballYdir= -ballYdir;
             }
 
@@ -107,6 +120,47 @@ public class Gameplay extends JPanel implements KeyListener, ActionListener {
                         if(ballRect.intersects(brickRect)){
                             map.setBrickValue(0, i, j);
                             totalBricks--;
+                            
+                            
+                            
+                            // total 3 ta level deua holo   
+                            
+                            if (totalBricks == 80 ) {
+                        		delay--; 
+                        		timer = new Timer(delay,this);
+                        		timer.start();
+                        		score += 500;
+                        		level++;
+                            }
+                            else if(totalBricks == 60 )
+                            {
+                            	delay--; 
+                       		 	timer = new Timer(delay,this);
+                       		 	timer.start();
+                       		 	score += 500;
+                       		 	level++;
+                       		 	moveright(100);
+                       		 	moveleft(100);
+                            }
+                            else if(totalBricks<30)
+                            {
+                            	delay -- ; 
+                       		 	timer = new Timer(delay,this);
+                       		 	timer.start();
+                       		 	score += 1000;
+                       		 	level++;
+                       		 	moveright(150);
+                    		 	moveleft(150);
+                            }
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
                             score+=5;
                             if(ballPosX+19<= brickRect.x || ballPosX+1>= brickRect.x + brickRect.width){
                                 ballXdir= -ballXdir;
@@ -149,7 +203,7 @@ public class Gameplay extends JPanel implements KeyListener, ActionListener {
                 playerX= 600;
             }
             else{
-                moveright();
+                moveright(50);
             }
         }
         if(e.getKeyCode() == KeyEvent.VK_LEFT){
@@ -157,35 +211,42 @@ public class Gameplay extends JPanel implements KeyListener, ActionListener {
                 playerX= 10;
             }
             else{
-                moveleft();
+                moveleft(50);
             }
         }
+        
+        //     ekhan theke khela suru level 1 er 
 
         if(e.getKeyCode()==KeyEvent.VK_ENTER){
             if(!play){
-                play= true;
-                ballPosX=120;
-                ballPosY=350;
+            	
+            	
+            	play= true;
+                ballPosX=50;
+                ballPosY=400;
                 ballXdir=-1;
                 ballYdir=-2;
-                playerX=310;
-                score= 0;
-                totalBricks= 21;
-                map= new mapGenerator(3, 7);
+                playerX=150;
+                score = 0;
+                totalBricks= 100;
+                map= new mapGenerator(4,20);
+                delay=8;
 
                 repaint();
             }
         }
     }
 
-    public void moveright(){
+
+    public void moveright(int x ){
         play= true;
-        playerX+=20;
+        playerX+=x;
     }
-    public void moveleft(){
+    public void moveleft(int x ){
         play= true;
-        playerX-=20;
+        playerX-=x;
     }
+
 
 
 }
