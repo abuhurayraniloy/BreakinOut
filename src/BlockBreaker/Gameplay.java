@@ -19,6 +19,7 @@ public class Gameplay extends JPanel implements KeyListener, ActionListener {
 
     private int playerX= 150;
     
+    
     private int level =1 ;
 
     private int ballPosX= 50;
