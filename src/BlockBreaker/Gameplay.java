@@ -11,7 +11,7 @@ import javax.swing.Timer;
 public class Gameplay extends JPanel implements KeyListener, ActionListener {
     private boolean play= false;
     private int score= 0;
-    private int totalBricks= 100;
+    private int totalBricks= 160;
 
     private Timer timer;
 
@@ -39,8 +39,12 @@ public class Gameplay extends JPanel implements KeyListener, ActionListener {
         addKeyListener(this);
         setFocusable(true);
         setFocusTraversalKeysEnabled(false);
-        timer= new Timer(delay, this);
-        timer.start();
+        if(totalBricks==160)
+        {
+        	timer= new Timer(delay, this);
+            timer.start();
+        }
+        
     }
 
     public void paint(Graphics g){
@@ -101,7 +105,7 @@ public class Gameplay extends JPanel implements KeyListener, ActionListener {
     }
     @Override
     public void actionPerformed(ActionEvent e) {
-        timer.start();
+    	
 
         if(play){
             if(new Rectangle(ballPosX, ballPosY, 20, 20).intersects(new Rectangle(playerX, 550, 150, 8))){
@@ -123,12 +127,12 @@ public class Gameplay extends JPanel implements KeyListener, ActionListener {
 
                         if(ballRect.intersects(brickRect)){
                             map.setBrickValue( i, j);
-                            //totalBricks--;
+                            totalBricks--;
                        
                             // total 3 ta level deua holo   
                             
-                            if (totalBricks == 80 ) {
-                        		delay--; 
+                            if (totalBricks == 158 ) {
+                        		delay=7; 
                         		timer = new Timer(delay,this);
                         		timer.start();
                         		score += 500;
@@ -136,25 +140,23 @@ public class Gameplay extends JPanel implements KeyListener, ActionListener {
                         		moveright(120);
                        		 	moveleft(120);
                             }
-                            else if(totalBricks == 40 )
+                            else if(totalBricks == 60 )
                             {
-                            	delay--; 
+                            	delay=6; 
                        		 	timer = new Timer(delay,this);
                        		 	timer.start();
                        		 	score += 500;
                        		 	level++;
-                       		 	moveright(150);
-                       		 	moveleft(150);
+                       		 	
                             }
                             else if(totalBricks<10)
                             {
-                            	delay -- ; 
+                            	delay =5 ; 
                        		 	timer = new Timer(delay,this);
                        		 	timer.start();
                        		 	score += 1000;
                        		 	level++;
-                       		 	moveright(150);
-                    		 	moveleft(150);
+                       		 
                             }
                             
                             
@@ -207,7 +209,7 @@ public class Gameplay extends JPanel implements KeyListener, ActionListener {
                 playerX= 525;
             }
             else{
-                moveright(50);
+                moveright(120);
             }
         }
         if(e.getKeyCode() == KeyEvent.VK_LEFT){
@@ -215,7 +217,7 @@ public class Gameplay extends JPanel implements KeyListener, ActionListener {
                 playerX= 15;
             }
             else{
-                moveleft(50);
+                moveleft(120);
             }
         }
         
@@ -232,9 +234,9 @@ public class Gameplay extends JPanel implements KeyListener, ActionListener {
                 ballYdir=-2;
                 playerX=150;
                 score = 0;
-                totalBricks= 100;
+                totalBricks= 160;
                 map= new mapGenerator(10,20);
-                delay=8;
+               // delay=8;
                 //timer = new Timer(delay,this);
         		//timer.start();
                 
