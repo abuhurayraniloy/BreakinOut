@@ -8,8 +8,17 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import javax.swing.Timer;
 
-public class Gameplay extends JPanel implements KeyListener, ActionListener {
-    private boolean play= false;
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+import java.io.IOException;
+
+
+public class Gameplay extends  JPanel implements KeyListener, ActionListener  {
+	
+	
+	
+    private boolean play = false;
     private int score= 0;
     private int totalBricks= 160;
 
@@ -31,24 +40,54 @@ public class Gameplay extends JPanel implements KeyListener, ActionListener {
     private int ballYdir= -2;
 
     private mapGenerator map;
+    
+
+
   
     
     public Gameplay(){
+    	
+        	
+    	
+    	
+    	
         map= new mapGenerator(12,20);
+      
+        
+        
   
         addKeyListener(this); 
         setFocusable(true);
         setFocusTraversalKeysEnabled(false);
         
-        if(totalBricks==160)
-        {
+        delay = 8;
         	timer= new Timer(delay, this);   
             timer.start();
-        }
+        
         
     }
+    
+    
 
+//    public void pauseBackgroundMusic() {
+//        backgroundMusic.stop();
+//    }
+//
+//    public void resumeBackgroundMusic() {
+//        backgroundMusic.start();
+//    }
+//
+//    public void stopBackgroundMusic() {
+//        backgroundMusic.stop();
+//        backgroundMusic.close();
+//    }
+
+    
+   
     public void paint(Graphics g){
+    	
+    	
+    
     	
         g.setColor(Color.black);
         g.fillRect(1, 1, 692, 592);
