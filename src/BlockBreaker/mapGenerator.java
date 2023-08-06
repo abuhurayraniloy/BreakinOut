@@ -1,5 +1,8 @@
 package BlockBreaker;
 
+
+
+
 import java.awt.*;
 
 public class mapGenerator {
@@ -21,11 +24,11 @@ public class mapGenerator {
             		map[i][j]=0;
             	else 
             	{
-            		if((i+j)%5==0 && (i+j)%2==0)
+            		if((i*i+j)%5==0 && (i+j)%2==0)
             			map[i][j]=4;
-                	else if((i+j)%8==0 )
+                	else if((i*i+j)%8==0 )
                 		map[i][j]=2;
-                	else if((i+j)%6==0  )
+                	else if((i*i+j)%6==0  )
                 		map[i][j]=3;
           
                 	else 
@@ -65,11 +68,11 @@ public class mapGenerator {
         for(int i=0 ; i< map.length ; i++){
             for(int j=0 ; j<map[0].length ; j++){ 
                 if(map[i][j]>0){
-                	if((i+j)%5==0 && (i+j)%2==0)
+                	if((i*i+j)%5==0 && (i+j)%2==0)
                 		g.setColor(Color.green);
-                	else if((i+j)%8==0 )
+                	else if((i*i+j)%8==0 )
                 		g.setColor(Color.red);
-                	else if((i+j)%6==0  )
+                	else if((i*i+j)%6==0  )
                 		g.setColor(Color.blue);
                 	else 
                     g.setColor(Color.white);
