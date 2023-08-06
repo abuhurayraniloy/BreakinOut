@@ -20,7 +20,7 @@ public class Gameplay extends JPanel implements KeyListener, ActionListener {
     private int playerX= 150;
     
     
-    private int level =1 ;
+    public int level =1 ;
 
     private int ballPosX= 50;
 
@@ -31,8 +31,11 @@ public class Gameplay extends JPanel implements KeyListener, ActionListener {
     private int ballYdir= -2;
 
     private mapGenerator map;
+    private mapGenerator mp; 
+    
     public Gameplay(){
-        map= new mapGenerator(5,20);
+        map= new mapGenerator(9,20);
+  
         addKeyListener(this);
         setFocusable(true);
         setFocusTraversalKeysEnabled(false);
@@ -41,13 +44,14 @@ public class Gameplay extends JPanel implements KeyListener, ActionListener {
     }
 
     public void paint(Graphics g){
+    	
         g.setColor(Color.black);
         g.fillRect(1, 1, 692, 592);
 
         map.draw((Graphics2D) g);
         
-        
         g.setColor(Color.white);
+        
         g.fillRect(0, 0, 3, 592);
         g.fillRect(0, 0, 692, 3);
         g.fillRect(691, 0, 3, 592);
@@ -133,7 +137,7 @@ public class Gameplay extends JPanel implements KeyListener, ActionListener {
                         		score += 500;
                         		level++;
                             }
-                            else if(totalBricks == 60 )
+                            else if(totalBricks == 40 )
                             {
                             	delay--; 
                        		 	timer = new Timer(delay,this);
@@ -143,7 +147,7 @@ public class Gameplay extends JPanel implements KeyListener, ActionListener {
                        		 	moveright(100);
                        		 	moveleft(100);
                             }
-                            else if(totalBricks<30)
+                            else if(totalBricks<10)
                             {
                             	delay -- ; 
                        		 	timer = new Timer(delay,this);
@@ -230,7 +234,7 @@ public class Gameplay extends JPanel implements KeyListener, ActionListener {
                 playerX=150;
                 score = 0;
                 totalBricks= 100;
-                map= new mapGenerator(4,20);
+                map= new mapGenerator(9,20);
                 delay=8;
 
                 repaint();
