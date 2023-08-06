@@ -34,14 +34,15 @@ public class Gameplay extends JPanel implements KeyListener, ActionListener {
   
     
     public Gameplay(){
-        map= new mapGenerator(10,20);
+        map= new mapGenerator(12,20);
   
-        addKeyListener(this);
+        addKeyListener(this); 
         setFocusable(true);
         setFocusTraversalKeysEnabled(false);
+        
         if(totalBricks==160)
         {
-        	timer= new Timer(delay, this);
+        	timer= new Timer(delay, this);   
             timer.start();
         }
         
@@ -131,7 +132,7 @@ public class Gameplay extends JPanel implements KeyListener, ActionListener {
                        
                             // total 3 ta level deua holo   
                             
-                            if (totalBricks == 158 ) {
+                            if (totalBricks == 110 ) {
                         		delay=7; 
                         		timer = new Timer(delay,this);
                         		timer.start();
@@ -235,7 +236,7 @@ public class Gameplay extends JPanel implements KeyListener, ActionListener {
                 playerX=150;
                 score = 0;
                 totalBricks= 160;
-                map= new mapGenerator(10,20);
+                map= new mapGenerator(12,20);
                // delay=8;
                 //timer = new Timer(delay,this);
         		//timer.start();

@@ -27,8 +27,11 @@ public class mapGenerator {
                 		map[i][j]=2;
                 	else if((i+j)%6==0  )
                 		map[i][j]=3;
+          
                 	else 
                 		map[i][j]=1;
+            		if((j+1)%10==0)
+            			map[i][j]=0;
             	}
                 
                 
@@ -43,7 +46,7 @@ public class mapGenerator {
         
         
         
-        brickWidth= 550/col;
+        brickWidth= 580/col;
         brickHeight= 220/row;
 
 
