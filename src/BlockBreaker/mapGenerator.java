@@ -33,6 +33,9 @@ public class mapGenerator {
           
                 	else 
                 		map[i][j]=1;
+            		
+            		if((i*i+j+1)%10==0)
+            			map[i][j]=10000;
             		if((j+1)%10==0)
             			map[i][j]=0;
             	}
@@ -74,6 +77,8 @@ public class mapGenerator {
                 		g.setColor(Color.red);
                 	else if((i*i+j)%6==0  )
                 		g.setColor(Color.blue);
+                	else if((i*i+j+1)%10==0)
+                		g.setColor(Color.gray);
                 	else 
                     g.setColor(Color.white);
                     

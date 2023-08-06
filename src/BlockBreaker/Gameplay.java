@@ -17,14 +17,14 @@ public class Gameplay extends JPanel implements KeyListener, ActionListener {
 
     private int delay= 8;
 
-    private int playerX= 150;
+    private int playerX= 280;
     
     
     public int level =1 ;
 
-    private int ballPosX= 50;
+    private int ballPosX= 340;
 
-    private int ballPosY=400;
+    private int ballPosY= 500;
 
     private int ballXdir= -1;
 
@@ -109,7 +109,7 @@ public class Gameplay extends JPanel implements KeyListener, ActionListener {
     	
 
         if(play){
-            if(new Rectangle(ballPosX, ballPosY, 20, 20).intersects(new Rectangle(playerX, 550, 150, 8))){
+            if(new Rectangle(ballPosX, ballPosY, 20, 20).intersects(new Rectangle(playerX, 550, 280, 8))){
                 ballYdir= -ballYdir;
             }
             
@@ -149,15 +149,6 @@ public class Gameplay extends JPanel implements KeyListener, ActionListener {
                        		 	score += 500;
                        		 	level++;
                        		 	
-                            }
-                            else if(totalBricks<10)
-                            {
-                            	delay =5 ; 
-                       		 	timer = new Timer(delay,this);
-                       		 	timer.start();
-                       		 	score += 1000;
-                       		 	level++;
-                       		 
                             }
                             
                             
@@ -229,11 +220,11 @@ public class Gameplay extends JPanel implements KeyListener, ActionListener {
             	
             	
             	play= true;
-                ballPosX=50;
-                ballPosY=400;
+            	ballPosX=340;
+                ballPosY=500;
                 ballXdir=-1;
                 ballYdir=-2;
-                playerX=150;
+                playerX=280;
                 score = 0;
                 totalBricks= 160;
                 map= new mapGenerator(12,20);
