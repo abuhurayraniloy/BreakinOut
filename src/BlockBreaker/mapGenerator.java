@@ -66,22 +66,22 @@ public class mapGenerator {
     
     
     // every brick er color change %3,5,8 diye change  
-    
+
     public void draw(Graphics2D g){
         for(int i=0 ; i< map.length ; i++){
-            for(int j=0 ; j<map[0].length ; j++){ 
+            for(int j=0 ; j<map[0].length ; j++){
                 if(map[i][j]>0){
-                	if((i*i+j)%5==0 && (i+j)%2==0)
-                		g.setColor(Color.green);
-                	else if((i*i+j)%8==0 )
-                		g.setColor(Color.red);
-                	else if((i*i+j)%6==0  )
-                		g.setColor(Color.blue);
-                	else if((i*i+j+1)%10==0)
-                		g.setColor(Color.gray);
-                	else 
-                    g.setColor(Color.white);
-                    
+                    if(map[i][j]==4)
+                        g.setColor(Color.green);
+                    else if(map[i][j]==2 )
+                        g.setColor(Color.red);
+                    else if(map[i][j]==3 )
+                        g.setColor(Color.blue);
+                    else if((i*i+j+1)%10==0)
+                        g.setColor(Color.gray);
+                    else if(map[i][j]==1)
+                        g.setColor(Color.white);
+
                     g.fillRect(j*brickWidth+80, i*brickHeight+50 , brickWidth, brickHeight);
                     g.setStroke(new BasicStroke(3));
                     g.setColor(Color.black);
