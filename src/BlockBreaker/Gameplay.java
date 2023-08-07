@@ -96,11 +96,11 @@ public class Gameplay extends  JPanel implements KeyListener, ActionListener  {
 
         map.draw((Graphics2D) g);
         
-        g.setColor(Color.white);
+        g.setColor(Color.YELLOW);
         
         g.fillRect(0, 0, 3, 592);
         g.fillRect(0, 0, 692, 3);
-        g.fillRect(691, 0, 3, 592);
+        g.fillRect(688, 0, 3, 592);
 
         g.setColor(Color.white);
         g.setFont(new Font("serif", Font.BOLD, 25));
@@ -124,7 +124,7 @@ public class Gameplay extends  JPanel implements KeyListener, ActionListener  {
             ballXdir=0;
             ballYdir=0;
             g.setColor(Color.green);
-            g.setFont(new Font("serif", Font.BOLD, 30));
+            g.setFont(new Font("TRUETYPE_FONT", Font.BOLD, 30));
             g.drawString(" Congratulation , Score: "+score, 260, 300);
 
             g.setFont(new Font("serif", Font.BOLD, 20));
@@ -137,11 +137,11 @@ public class Gameplay extends  JPanel implements KeyListener, ActionListener  {
             ballXdir=0;
             ballYdir=0;
             g.setColor(Color.RED);
-            g.setFont(new Font("serif", Font.BOLD, 30));
+            g.setFont(new Font("TRUETYPE_FONT", Font.BOLD, 30));
             g.drawString(" Game Over, Score: "+score, 190, 300);
 
-            g.setFont(new Font("serif", Font.BOLD, 20));
-            g.drawString("Press Enter to Restart", 230, 350);
+            g.setFont(new Font("TRUETYPE_FONT", Font.BOLD, 20));
+            g.drawString("Press Enter to Restart", 250, 350);
         }
         g.dispose();
 
