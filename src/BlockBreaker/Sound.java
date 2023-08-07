@@ -10,7 +10,7 @@ public class Sound {
     public Sound(){
         soundURL[0]= getClass().getResource("/Sound/BlueBoyAdventure.wav");
         soundURL[1]= getClass().getResource("/Sound/powerup.wav");
-        soundURL[3]= getClass().getResource("/Sound/unlock.wav");
+        soundURL[2]= getClass().getResource("/Sound/AudioBrickBreak.wav");
 
     }
 
