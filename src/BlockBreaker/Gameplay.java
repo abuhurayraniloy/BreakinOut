@@ -19,6 +19,8 @@ public class Gameplay extends  JPanel implements KeyListener, ActionListener  {
 	
 	
     private boolean play = false;
+
+    Sound sound= new Sound();
     private int score= 0;
     private int totalBricks= 160;
 
@@ -55,7 +57,7 @@ public class Gameplay extends  JPanel implements KeyListener, ActionListener  {
       
         
         
-  
+        playMusic(0);
         addKeyListener(this); 
         setFocusable(true);
         setFocusTraversalKeysEnabled(false);
@@ -126,6 +128,7 @@ public class Gameplay extends  JPanel implements KeyListener, ActionListener  {
             g.drawString(" Congratulation , Score: "+score, 260, 300);
 
             g.setFont(new Font("serif", Font.BOLD, 20));
+
             g.drawString("Press Enter to Restart", 230, 350);
         }
 
@@ -142,6 +145,22 @@ public class Gameplay extends  JPanel implements KeyListener, ActionListener  {
         }
         g.dispose();
 
+    }
+
+    public void playMusic(int i){
+        sound.setFile(i);
+        sound.play();
+        sound.loop();
+
+    }
+
+    public void stopMusic(){
+        sound.stop();
+    }
+
+    public void playSE(int i){
+        sound.setFile(i);
+        sound.play();
     }
     @Override
     public void actionPerformed(ActionEvent e) {
@@ -167,7 +186,9 @@ public class Gameplay extends  JPanel implements KeyListener, ActionListener  {
 
                         if(ballRect.intersects(brickRect)){
                             map.setBrickValue( i, j);
+                            playSE(2);
                             totalBricks--;
+
                        
                             // total 3 ta level deua holo   
                             
@@ -175,8 +196,10 @@ public class Gameplay extends  JPanel implements KeyListener, ActionListener  {
                         		delay=7; 
                         		timer = new Timer(delay,this);
                         		timer.start();
+
                         		score += 500;
                         		level++;
+                                playSE(1);
                         		moveright(120);
                        		 	moveleft(120);
                             }
@@ -187,6 +210,7 @@ public class Gameplay extends  JPanel implements KeyListener, ActionListener  {
                        		 	timer.start();
                        		 	score += 500;
                        		 	level++;
+                                    playSE(1);
                        		 	
                             }
                             
